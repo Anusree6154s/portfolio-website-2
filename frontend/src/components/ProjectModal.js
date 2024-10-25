@@ -8,44 +8,51 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '80vw',
-    height: '90vh',
+    width: '90vw',
+    height: '70vh',
     bgcolor: 'background.paper',
-    border:'none',
-    outline:'none',
+    border: 'none',
+    outline: 'none',
     boxShadow: 24,
     p: 2,
 };
 
 
 
-export default function ProjectModal({open, handleClose}) {
+export default function ProjectModal({ open, handleClose, details }) {
     return (
-        <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box sx={style} style={{ display: 'flex', gap: '10px', textAlign: 'center' }}>
-                <img src="https://fastly.picsum.photos/id/99/300/200.jpg?blur=5&hmac=P7sdf1dmOK2W9p6lS2QHB1ln7_wpXDgzs6T5NpKGWtY" alt="" style={{ height: '100%', width: '60%' }} />
+        <>
+            {
+                details && Object.keys(details).length !== 0 &&
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style} style={{ display: 'flex', gap: '10px', textAlign: 'center' }}>
+                        <img src={`${details.imageURL}`} alt="" style={{ height: '100%', width: '70%', objectFit: 'fill', background: '#e3e3e3' }} />
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
-                    <span style={{ borderBottom: '1px solid #00000026', fontWeight: 'bold', paddingBottom: '10px' }}>
-                        Dummy HEading Dummy HEading Dummy HEading Dummy HEading fsh syh dh fghd dhdb wy hsry dh fgnd hd dhd hd gh gjgj jj fh jfj fh dhjf djghd f jsf
-                    </span>
-                    <span style={{ fontSize: 'small' }}> description description description description description description description description description description description description description description description</span>
-                    <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' }}>
-                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                    </span>
-                    <span style={{ fontSize: 'small', display: "flex", gap: '10px', alignItems: "center", justifyContent: 'center' }}><a href="a">View Website </a>  <span style={{ fontSize: 'x-small' }}>•</span>  <a href="a"> View Github</a></span>
-                </div>
-                <span style={{ textAlign: 'right', cursor: 'pointer' }} onClick={handleClose}><CloseIcon style={{ background: 'gold', borderRadius: '20px', fontWeight: 'bold', padding: '5px' }} /></span>
-            </Box>
-        </Modal>
+                            <span style={{ borderBottom: '1px solid #00000026', fontWeight: 'bold', paddingBottom: '10px' }}>
+                                {details.title}
+                            </span>
+                            <span style={{ fontSize: 'small' }}> {details.description}</span>
+                            <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' , flexWrap:'wrap'}}>
+                                {details.topics.map((topic, index) =>
+                                    <span key={index} style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>{topic}</span>
+                                )}
+                                {/* <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
+                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
+                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span> */}
+                            </span>
+                            <span style={{ fontSize: 'small', display: "flex", gap: '10px', alignItems: "center", justifyContent: 'center', color: '#ffbf00', fontWeight: 'bold' }}><a href={`${details.webURL}`} target='_blank' rel="noreferrer">View Website </a>  <span style={{ fontSize: 'x-small' , color:'black'}}>•</span>  <a href={`${details.gitURL}`} target='_blank' rel="noreferrer"> View Github</a></span>
+                        </div>
+                        <span style={{ textAlign: 'right', cursor: 'pointer' }} onClick={handleClose}><CloseIcon style={{ background: 'gold', borderRadius: '20px', fontWeight: 'bold', padding: '5px' }} /></span>
+                    </Box>
+                </Modal>
+            }
+        </>
     )
 }

@@ -101,11 +101,11 @@ exports.fetchReadmeImage = async (repoName) => {
             const decodedContent = atob(base64Content); //base64 to markdown
             const htmlContent = marked.parse(decodedContent); //markdown to html
             const $ = cheerio.load(htmlContent); //javascript on html
-            const imageUrl = $('#image').attr('src');
+            const imageURL = $('#image').attr('src');
             const title = $('#title').text();
             const description = $('#description').text();
             return {
-                imageUrl: imageUrl && imageUrl,
+                imageURL: imageURL && imageURL,
                 title: title && title,
                 description: description && description
             }

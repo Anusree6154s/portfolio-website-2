@@ -6,17 +6,24 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 
 import ProjectModal from './ProjectModal';
-import { ProjectsContext } from '../contexts/ProjectContext';
 
 
 
 
 export default function Projects() {
-    const { projects, setProjects } = useContext(ProjectsContext)
+    // const { projects, setProjects } = useContext(ProjectsContext)
+    const projects = JSON.parse(sessionStorage.getItem('projects'))
 
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [details, setDetails] = useState({})
+    const handleOpen = (project) => {
+        setOpen(true)
+        setDetails(project)
+    }
+    const handleClose = () => {
+        setOpen(false)
+        setDetails({})
+    }
 
 
 
@@ -45,81 +52,30 @@ export default function Projects() {
                         modules={[Navigation, Pagination]} className="mySwiper"
                         style={{ background: 'white', height: '100%', paddingBottom: '60px' }}
                     >
-                        {projects.length !== 0 &&
-                            projects.map((project, index)=>
-                                <SwiperSlide className='swiper-slide' onClick={handleOpen}>
+                        {projects && projects.length !== 0 &&
+                            projects.map((project, index) => (
+                                !project.error &&
+                                <SwiperSlide key={index} className='swiper-slide' onClick={() => handleOpen(project)}>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%', boxShadow: '0x 2px 2px 2px #f8f9fa', alignItems: 'center', justifyContent: 'space-between' }}>
-                                        <img src="https://fastly.picsum.photos/id/99/300/200.jpg?blur=5&hmac=P7sdf1dmOK2W9p6lS2QHB1ln7_wpXDgzs6T5NpKGWtY" alt="dummy img" style={{ width: "100%", height: '60%' }} />
+                                        <img src={`${project.imageURL}`} alt="dummy img" style={{ width: "100%", height: '60%', flex: 1.5, background: 'gray' }} />
 
 
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', width: '80%', justifyContent: 'space-around', height: '100%' }}>
-                                            <span style={{ textAlign: 'center' }}>Dummy Heading Dummy Heading Dummy Heading</span>
-                                            <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' }}>
-                                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', width: '80%', justifyContent: 'space-around', height: '100%', flex: 0.85 }}>
+                                            <span style={{ textAlign: 'center' }}>{project.title}</span>
+                                            <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                                                {project.topics.slice(0, 3).map((topic, index) =>
+                                                    <span key={index} style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>{topic}</span>
+                                                )}
                                             </span>
                                         </div>
                                     </div>
                                 </SwiperSlide>
-                            )}
-
-
-                        <SwiperSlide>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%', boxShadow: '0x 2px 2px 2px #f8f9fa', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <img src="https://fastly.picsum.photos/id/99/300/200.jpg?blur=5&hmac=P7sdf1dmOK2W9p6lS2QHB1ln7_wpXDgzs6T5NpKGWtY" alt="dummy img" style={{ width: "100%", height: '60%' }} />
-
-
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', width: '80%', justifyContent: 'space-around', height: '100%' }}>
-                                    <span style={{ textAlign: 'center' }}>Dummy </span>
-                                    <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' }}>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%', boxShadow: '0x 2px 2px 2px #f8f9fa', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <img src="https://fastly.picsum.photos/id/99/300/200.jpg?blur=5&hmac=P7sdf1dmOK2W9p6lS2QHB1ln7_wpXDgzs6T5NpKGWtY" alt="dummy img" style={{ width: "100%", height: '60%' }} />
-
-
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', width: '80%', justifyContent: 'space-around', height: '100%' }}>
-                                    <span style={{ textAlign: 'center' }}>Dummy Heading Dummy </span>
-                                    <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' }}>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%', boxShadow: '0x 2px 2px 2px #f8f9fa', alignItems: 'center', justifyContent: 'space-between' }}>
-                                <img src="https://fastly.picsum.photos/id/99/300/200.jpg?blur=5&hmac=P7sdf1dmOK2W9p6lS2QHB1ln7_wpXDgzs6T5NpKGWtY" alt="dummy img" style={{ width: "100%", height: '60%' }} />
-
-
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', width: '80%', justifyContent: 'space-around', height: '100%' }}>
-                                    <span style={{ textAlign: 'center' }}>Dummy Heading Dummy Heading Dummy Heading</span>
-                                    <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' }}>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                        <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-
+                            ))}
                     </Swiper>
                 </div>
             </div>
 
-            <ProjectModal open={open} handleClose={handleClose} />
+            <ProjectModal open={open} handleClose={handleClose} details={details} />
 
             <style>
                 {`
