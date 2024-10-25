@@ -1,17 +1,57 @@
 [
     {
-        "description": "QKart is an E-commerce application providing a wide range of products for users. This project focuses on the backend development, implementing robust REST APIs and ensuring secure user interactions.",
+        "description": "XBoard is a News Feed website that showcases the latest news on selected topics from Flipboard. This project focuses on front-end development, implementing dynamic UI elements like Accordions and Image Carousels to enhance the user experience.",
         "imageURL": "https://github.com/user-attachments/assets/a0259bce-9072-4684-9061-f7419e548142",
         "title": "XBoard",
         "topics": [
             "HTML",
             "CSS",
-            "Figma",
             "Bootstrap",
             "JavaScript",
+            "Figma",
             "REST",
-            "Netlify"
+            "Netlify",
+            "jQuery"
         ],
         "webURL": "https://xboard-buildout-crio.netlify.app/"
+    },
+    {
+        "description": "QTripDynamic is a travel website designed for travelers looking to explore various adventures across different cities. This project focuses on creating a dynamic, responsive front-end and integrating with backend REST APIs to fetch and display city-specific adventure options. It includes multi-select filters, carousels, and localStorage for persisting user preferences.",
+        "imageURL": "https://github.com/user-attachments/assets/4873041d-d33a-44c2-9694-9ff48b98ab06",
+        "title": "QTripDynamic",
+        "topics": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Bootstrap",
+            "REST",
+            "Fetch API",
+            "Heroku",
+            "Netlify"
+        ],
+        "webURL": "https://qtrip-dynamic-red-kappa.vercel.app/"
+    },
+    {
+        "description": "QTripStatic is a static travel website featuring adventure options across cities, designed to provide a visually appealing and responsive layout. This project involves creating multiple pages from wireframes using HTML, CSS, and Bootstrap, optimized for various devices and screen sizes.",
+        "imageURL": "https://github.com/user-attachments/assets/fffab2d0-39f1-45cb-a341-3af3bba054e6",
+        "title": "QTripStatic",
+        "topics": [
+            "HTML",
+            "CSS",
+            "Bootstrap",
+            "Netlify"
+        ],
+        "webURL": "https://anilkumaranusree113-me-qtripstatic-lsnral4u2.vercel.app/"
+    },
+    {
+        "description": "XCruise is a responsive website built from scratch to showcase cruise vacation options, offering users a seamless browsing experience for exploring cruise destinations and booking opportunities. Developed with HTML and CSS, the site includes interactive sections, a dynamic layout, and an emphasis on responsive design across devices.",
+        "imageURL": "https://github.com/user-attachments/assets/ade289d3-d3bc-4656-b8cd-a214544e8a3c",
+        "title": "XCruise",
+        "topics": [
+            "HTML",
+            "CSS",
+            "User Interface Design"
+        ],
+        "webURL": "https://xcruise-buildout-crio.netlify.app/"
     }
 ]

@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import ProjectModal from '../components/ProjectModal'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
+import projectsDB from '../db/projects.json'
 
 export default function ProjectsPage() {
-    const allProjects = JSON.parse(sessionStorage.getItem('projects'))
+    const allProjects = [...JSON.parse(sessionStorage.getItem('projects')), ...projectsDB]
     const [projects, setProjects] = useState(allProjects)
 
     const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function ProjectsPage() {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsDropdownVisible(false); // Close the dropdown
+                setIsDropdownVisible(false);
             }
         };
 
@@ -69,11 +70,11 @@ export default function ProjectsPage() {
             let filtered_projects_by_search = tools.length ? projects : allProjects
             filtered_projects_by_search = filtered_projects_by_search.filter(project => {
                 return !project.error &&
-                (
-                    project.title.toLowerCase().includes(input)
-                    || project.description.toLowerCase().includes(input)
-                    || project.topics.some(topic => topic.toLowerCase().includes(input))
-                )
+                    (
+                        project.title.toLowerCase().includes(input)
+                        || project.description.toLowerCase().includes(input)
+                        || project.topics.some(topic => topic.toLowerCase().includes(input))
+                    )
             })
 
             let filtered_projects_by_tools = searchInput ? filtered_projects_by_search : allProjects
@@ -116,7 +117,7 @@ export default function ProjectsPage() {
                             <span key={index} style={{ borderRadius: '10px', background: '#f0f0f0', padding: '2px 5px 2px 10px', display: 'flex', gap: '8px', alignItems: 'center' }}>{tool} <span style={{ fontSize: 'xx-small', background: 'white', borderRadius: '10px', padding: '0px 3px', fontWeight: 'bold', cursor: 'pointer' }} id={tool} onClick={(e) => handleUnsetFilter(e)}>x</span></span>
                         )}
 
-                       
+
 
 
                     </div>
@@ -136,14 +137,15 @@ export default function ProjectsPage() {
                                     backgroundColor: 'white',
                                     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
                                     overflowY: 'scroll',
+                                    overflowX: 'hidden',
                                     zIndex: 1, // Ensure it appears above other elements
                                     display: 'flex', flexDirection: 'column', cursor: 'pointer', textAlign: 'left'
                                 }}
                                 className='dropdown'
                             >
 
-                                {topics.length !== 0 && topics.map((topic, index) => <span className='dropdown-item' key={index} style={{ padding: '5px 10px' }} onClick={(e) => handleSetFilter(e)}>{topic}</span>)}
-                              
+                                {topics.length !== 0 && topics.map((topic, index) => <span className='dropdown-item' key={index} style={{ padding: '5px 10px', width: '100%' }} onClick={(e) => handleSetFilter(e)}>{topic}</span>)}
+
                             </div>
                         )}
                     </div>
@@ -189,10 +191,15 @@ export default function ProjectsPage() {
        background:#f5f5f5;
        }
 
-       .dropdown{
-       scrollbar-width: thin;
-            scrollbar-color: #888 #f1f1f1;
-       }
+
+       .dropdown::-webkit-scrollbar {
+  width: 2px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px; 
+
         `}
             </style>
         </section>

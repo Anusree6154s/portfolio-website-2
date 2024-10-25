@@ -12,7 +12,7 @@ import projectsDB from '../db/projects.json'
 
 
 export default function Projects() {
-    const projects = JSON.parse(sessionStorage.getItem('projects'))
+    const projects = [...JSON.parse(sessionStorage.getItem('projects')), ...projectsDB]
 
     const [open, setOpen] = useState(false);
     const [details, setDetails] = useState({})
@@ -25,7 +25,6 @@ export default function Projects() {
         setDetails({})
     }
 
-console.log(projectsDB)
 
     return (
         <section id='projects' style={{ height: 'fit-content', display: 'flex', justifyContent: 'center', paddingTop: '8%' }}>
@@ -40,7 +39,6 @@ console.log(projectsDB)
                 </p>
 
                 <div style={{ height: '60vh', width: '100%', display: 'flex', justifyContent: 'center' }}>
-
                     <Swiper
                         navigation={true}
                         spaceBetween={30}
@@ -71,7 +69,7 @@ console.log(projectsDB)
                                     </div>
                                 </SwiperSlide>
                             ))}
-                        {projectsDB && projectsDB.length !== 0 &&
+                        {/* {projectsDB && projectsDB.length !== 0 &&
                             projectsDB.map((project, index) => (
                                 !project.error &&
                                 <SwiperSlide key={index} className='swiper-slide' onClick={() => handleOpen(project)}>
@@ -89,7 +87,7 @@ console.log(projectsDB)
                                         </div>
                                     </div>
                                 </SwiperSlide>
-                            ))}
+                            ))} */}
 
                     </Swiper>
                 </div>

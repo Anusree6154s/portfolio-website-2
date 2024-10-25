@@ -9,7 +9,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '90vw',
-    height: '70vh',
+    height: 'fit-content',
     bgcolor: 'background.paper',
     border: 'none',
     outline: 'none',
