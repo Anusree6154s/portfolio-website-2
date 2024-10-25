@@ -16,7 +16,7 @@ export default function Projects() {
     const localProjects = JSON.parse(sessionStorage.getItem('projects'))
     const projects = localProjects ? [...localProjects, ...projectsDB] : []
 
-    const { lightMode, setLightMode } = useContext(ThemeContext)
+    const { lightMode } = useContext(ThemeContext)
     const [open, setOpen] = useState(false);
     const [details, setDetails] = useState({})
     const handleOpen = (project) => {

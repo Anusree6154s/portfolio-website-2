@@ -11,7 +11,7 @@ export default function Landing() {
     const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
     const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
 
-    const { lightMode, setLightMode } = useContext(ThemeContext)
+    const { lightMode} = useContext(ThemeContext)
 
     return (
         <>

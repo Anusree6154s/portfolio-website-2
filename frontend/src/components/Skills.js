@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function Skills() {
-    const { lightMode, setLightMode } = useContext(ThemeContext)
+    const { lightMode } = useContext(ThemeContext)
     const skills = [
         { name: 'HTML', img: '/images/icons/html-icon.png' },
         { name: 'CSS', img: '/images/icons/css-icon.png' },

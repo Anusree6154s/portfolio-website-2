@@ -4,12 +4,9 @@ import { useMediaQuery } from 'react-responsive';
 
 
 export default function Footer() {
-    const { lightMode, setLightMode } = useContext(ThemeContext)
+    const { lightMode} = useContext(ThemeContext)
 
-    const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
     const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
-    const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
-    const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
 
     return (
         <footer style={{ padding: '20px', backgroundColor: lightMode ? '#f8f9fa' : 'var(--light-text)', textAlign: 'center', display: 'flex', justifyContent: 'center', fontFamily: 'monospace', color: lightMode ? 'darkslategray' : 'var(--dark-text)', paddingTop: '5%' }}>

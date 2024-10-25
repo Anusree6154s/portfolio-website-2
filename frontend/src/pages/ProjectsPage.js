@@ -9,12 +9,10 @@ import { ThemeContext } from '../contexts/ThemeContext';
 
 
 export default function ProjectsPage() {
-    const { lightMode, setLightMode } = useContext(ThemeContext)
+    const { lightMode } = useContext(ThemeContext)
 
-    const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
     const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
     const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
-    const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
 
     const allProjects = [...JSON.parse(sessionStorage.getItem('projects')), ...projectsDB]
     const [projects, setProjects] = useState(allProjects)
@@ -114,7 +112,7 @@ export default function ProjectsPage() {
 
 
     return (
-        <section id='projects-page' style={{ display: "flex", flexDirection: 'column', alignItems: 'center', background: !lightMode && 'black', color: !lightMode && 'white', paddingBottom:'5%' }}>
+        <section id='projects-page' style={{ display: "flex", flexDirection: 'column', alignItems: 'center', background: !lightMode && 'black', color: !lightMode && 'white', paddingBottom: '5%' }}>
 
             <div id='searchbar' style={{ width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', gap: '20px', flexDirection: isTablet ? 'column' : 'unset' }}>
                 <div id='search' style={{ width: isTablet ? '100%' : '40%', background: lightMode ? '#f0f0f0' : 'var(--light-text)', padding: '0px 10px', display: 'flex', alignItems: 'center', gap: '10px' }}>

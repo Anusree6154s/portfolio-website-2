@@ -6,15 +6,13 @@ import { useMediaQuery } from 'react-responsive';
 import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function Contact() {
-  const { lightMode, setLightMode } = useContext(ThemeContext)
+  const { lightMode} = useContext(ThemeContext)
 
   const [openSuccess, setOpenSuccess] = useState(false)
   const [openWarning, setOpenWarning] = useState(false)
 
   const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
   const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
-  const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
 
   const handleSubmit = (e) => {
     e.preventDefault();

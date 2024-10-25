@@ -10,11 +10,8 @@ import { useContext } from 'react'
 
 
 export default function ProjectModal({ open, handleClose, details }) {
-    const { lightMode, setLightMode } = useContext(ThemeContext)
-    const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
+    const { lightMode} = useContext(ThemeContext)
     const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
-    const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
-    const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
 
     const style = {
         position: 'absolute',
