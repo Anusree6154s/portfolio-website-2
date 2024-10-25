@@ -39,15 +39,18 @@ export default function ProjectModal({ open, handleClose, details }) {
                                 {details.title}
                             </span>
                             <span style={{ fontSize: 'small' }}> {details.description}</span>
-                            <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center' , flexWrap:'wrap'}}>
+                            <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center', flexWrap: 'wrap' }}>
                                 {details.topics.map((topic, index) =>
                                     <span key={index} style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>{topic}</span>
                                 )}
-                                {/* <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span>
-                                <span style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>tool</span> */}
                             </span>
-                            <span style={{ fontSize: 'small', display: "flex", gap: '10px', alignItems: "center", justifyContent: 'center', color: '#ffbf00', fontWeight: 'bold' }}><a href={`${details.webURL}`} target='_blank' rel="noreferrer">View Website </a>  <span style={{ fontSize: 'x-small' , color:'black'}}>•</span>  <a href={`${details.gitURL}`} target='_blank' rel="noreferrer"> View Github</a></span>
+                            <span style={{ fontSize: 'small', display: "flex", gap: '10px', alignItems: "center", justifyContent: 'center', color: '#ffbf00', fontWeight: 'bold' }}>
+                                <a href={`${details.webURL}`} target='_blank' rel="noreferrer">View Website </a>
+                                {details.gitURL && <>
+                                    <span style={{ fontSize: 'x-small', color: 'black' }}>•</span>
+                                    <a href={`${details.gitURL}`} target='_blank' rel="noreferrer"> View Github</a>
+                                </>}
+                            </span>
                         </div>
                         <span style={{ textAlign: 'right', cursor: 'pointer' }} onClick={handleClose}><CloseIcon style={{ background: 'gold', borderRadius: '20px', fontWeight: 'bold', padding: '5px' }} /></span>
                     </Box>

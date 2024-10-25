@@ -20,7 +20,7 @@ export default function Footer() {
                 </div>
 
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    <span>&copy; 2024 Anusree. All Rights Reserved.</span>
+                    <span>&copy; 2024 Anusree Anilkumar</span>
                     <span>Illustrations by <a href="https://storyset.com/education" target="_blank" rel="noopener noreferrer" style={{textDecoration:'underline'}}>Storyset</a></span>
                     <span>Made with ❤️</span>
                 </div>
