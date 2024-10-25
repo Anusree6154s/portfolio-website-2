@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import emailjs from '@emailjs/browser';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useMediaQuery } from 'react-responsive';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function Contact() {
+  const { lightMode, setLightMode } = useContext(ThemeContext)
+
   const [openSuccess, setOpenSuccess] = useState(false)
   const [openWarning, setOpenWarning] = useState(false)
 
@@ -41,17 +44,17 @@ export default function Contact() {
 
 
   return (
-    <section id='contact' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: isTablet ? 'fit-content' : '100vh', paddingTop: isTablet ? '8%' : '3%' }}>
+    <section id='contact' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: isTablet ? 'fit-content' : '100vh', paddingTop: isTablet ? '8%' : '3%', background: !lightMode && 'black', paddingBottom:'5%' }}>
       <div style={{ width: '60%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-        <h1 style={{ marginBottom: '3%', marginTop: '0px', color: 'var(--light-primary)', fontWeight: '900', textTransform: 'uppercase' }}>
+        <h1 style={{ marginBottom: '3%', marginTop: '0px', color: lightMode ? 'var(--light-primary)' : ' var(--dark-primary)', fontWeight: '900', textTransform: 'uppercase' }}>
           Contact Me
         </h1>
 
-        <div style={{ background: 'var(--light-primary)', height: isLaptop ? '50%' : '70%', borderRadius: '20px', display: 'flex', justifyContent: 'space-around', width: "100%", flexDirection: isTablet ? 'column' : 'unset', padding: isTablet ? '5%' : '0%' }}>
+        <div style={{ background: lightMode?'var(--light-primary)':'linear-gradient(to bottom, var(--dark-primary), var(--light-primary))', height: isLaptop ? '50%' : '70%', borderRadius: '20px', display: 'flex', justifyContent: 'space-around', width: "100%", flexDirection: isTablet ? 'column' : 'unset', padding: isTablet ? '5%' : '0%' }}>
 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isTablet ? '5%' : 'unset' }}>
-            <img src="/images/contact-img.png" alt="contact-img" style={{ width: isTablet?'40%':'70%', background: 'var(--default-color-1)', borderRadius: '5px' }} />
+            <img src="/images/contact-img.png" alt="contact-img" style={{ width: isTablet ? '40%' : '70%', background: 'var(--default-color-1)', borderRadius: '5px' }} />
           </div>
 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: "100%" }}>

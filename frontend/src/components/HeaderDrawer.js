@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -9,41 +9,45 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import ConstructionIcon from '@mui/icons-material/Construction';
+import WebStoriesIcon from '@mui/icons-material/WebStories';
+import MailIcon from '@mui/icons-material/Mail';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 export default function HeaderDrawer({ open, toggleDrawer }) {
   const navigate = useNavigate()
+  const { lightMode, setLightMode } = useContext(ThemeContext)
 
   return (
-    <Drawer open={open} onClose={toggleDrawer(false)} anchor={'right'}>
-      <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Drawer open={open} onClose={toggleDrawer(false)} anchor={'right'} >
+      <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} style={{ backgroundColor: !lightMode && 'var(--light-text)', height: '100%', color: !lightMode && 'white' }}>
         <List>
-          {[{ title: 'Home', url: '/#top' }, { title: 'Skills', url: '/#skills' }, { title: 'Projects', url: '/#projects' }, { title: 'Contact', url: '/#contact' }].map((group, index) => (
-            <ListItem key={index} disablePadding>
-              <a href={`${group.url}`}>
+          {[{ title: 'Home', url: '/#top', icon: <HomeIcon /> }, { title: 'Skills', url: '/#skills', icon: <ConstructionIcon /> }, { title: 'Projects', url: '/#projects', icon: <WebStoriesIcon /> }, { title: 'Contact', url: '/#contact', icon: <MailIcon /> }].map((group, index) => (
+            <a href={group.url}>
+              <ListItem key={index} disablePadding>
                 <ListItemButton>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <ListItemIcon style={{ color: !lightMode && 'gray' }}>
+                    {group.icon}
                   </ListItemIcon>
                   <ListItemText primary={group.title} />
                 </ListItemButton>
-              </a>
-            </ListItem>
+              </ListItem>
+            </a>
           ))}
         </List>
         <Divider />
         <List>
-          {['Resume'].map((text, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <a href='/projects' >
+            {['Resume'].map((text, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={text} style={{ background: 'gold', color: 'var(--special-text)', padding: '5px 15px', border: 'none', fontWeight: 'bold', borderRadius: '5px', textAlign: 'center' }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </a>
         </List>
       </Box>
     </Drawer>

@@ -13,6 +13,12 @@ code {
   --default-color-2: #deebff;
   --default-color-3: #deebffa9;
 
+  --dark-default-color: #43434b;
+  --dark-default-color-1: #5959596e;
+  --dark-default-color-2: #05152b;
+  --dark-default-color-3: #585e67a9;
+
+
   --dark-text: #f3f9fc;
   --dark-background: #020708;
   --dark-primary: #2e8cb8;

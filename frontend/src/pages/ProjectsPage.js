@@ -1,12 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import ProjectModal from '../components/ProjectModal'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
 import projectsDB from '../db/projects.json'
 import { useMediaQuery } from 'react-responsive';
+import { ThemeContext } from '../contexts/ThemeContext';
+
 
 
 export default function ProjectsPage() {
+    const { lightMode, setLightMode } = useContext(ThemeContext)
+
     const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
     const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
     const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
@@ -110,18 +114,18 @@ export default function ProjectsPage() {
 
 
     return (
-        <section id='projects-page' style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
+        <section id='projects-page' style={{ display: "flex", flexDirection: 'column', alignItems: 'center', background: !lightMode && 'black', color: !lightMode && 'white', paddingBottom:'5%' }}>
 
             <div id='searchbar' style={{ width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', gap: '20px', flexDirection: isTablet ? 'column' : 'unset' }}>
-                <div id='search' style={{ width: isTablet ? '100%' : '40%', background: '#f0f0f0', padding: '0px 10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div id='search' style={{ width: isTablet ? '100%' : '40%', background: lightMode ? '#f0f0f0' : 'var(--light-text)', padding: '0px 10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <SearchIcon style={{ color: 'gray', fontSize: 'medium' }} />
-                    <input type="text" style={{ width: '100%', padding: '10px 0px', outline: 'none', border: 'none', background: '#f0f0f0' }} placeholder='Search' onChange={(e) => debounce(setSearchInput, 1000)(e.target.value)} />
+                    <input type="text" style={{ width: '100%', padding: '10px 0px', outline: 'none', border: 'none', background: lightMode ? '#f0f0f0' : 'var(--light-text)', color: !lightMode && 'white' }} placeholder='Search' onChange={(e) => debounce(setSearchInput, 1000)(e.target.value)} />
                 </div>
 
-                <div id='filterbar' style={{ display: 'flex', fontSize: 'small', gap: '20px', flexDirection: isTablet ? 'column' : 'unset' , alignItems:'center'}}>
-                    <div id='filter-tools' style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent:isTablet?'center': 'end', fontSize: 'x-small' }}>
+                <div id='filterbar' style={{ display: 'flex', fontSize: 'small', gap: '20px', flexDirection: isTablet ? 'column' : 'unset', alignItems: 'center' }}>
+                    <div id='filter-tools' style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: isTablet ? 'center' : 'end', fontSize: 'x-small' }}>
                         {tools.length !== 0 && tools.map((tool, index) =>
-                            <span key={index} style={{ borderRadius: '10px', background: '#f0f0f0', padding: '2px 5px 2px 10px', display: 'flex', gap: '8px', alignItems: 'center' }}>{tool} <span style={{ fontSize: 'xx-small', background: 'white', borderRadius: '10px', padding: '0px 3px', fontWeight: 'bold', cursor: 'pointer' }} id={tool} onClick={(e) => handleUnsetFilter(e)}>x</span></span>
+                            <span key={index} style={{ borderRadius: '10px', background: '#f0f0f0', padding: '2px 5px 2px 10px', display: 'flex', gap: '8px', alignItems: 'center' }}>{tool} <span style={{ fontSize: 'xx-small', background: lightMode ? 'white' : 'gray', borderRadius: '10px', padding: '0px 3px', fontWeight: 'bold', cursor: 'pointer' }} id={tool} onClick={(e) => handleUnsetFilter(e)}>x</span></span>
                         )}
 
 
@@ -175,7 +179,7 @@ export default function ProjectsPage() {
                                     <span style={{ textAlign: 'center' }}>{project.title}</span>
                                     <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center', flexWrap: 'wrap' }}>
                                         {project.topics.slice(0, 3).map((topic, index) =>
-                                            <span key={index} style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>{topic}</span>
+                                            <span key={index} style={{ borderRadius: '10px', background: lightMode ? '#e3e3e3' : 'var(--dark-accent)', color: !lightMode && 'white', padding: '2px 10px' }}>{topic}</span>
                                         )}
                                     </span>
                                 </div>
@@ -189,7 +193,7 @@ export default function ProjectsPage() {
             <style>
                 {`
           .swiper-slide:hover{
-          background:#f5f5f5;
+             background: ${lightMode ? '#f5f5f5' : 'var(--light-text)'};
           opacity:0.8;
           cursor:pointer;
           }
