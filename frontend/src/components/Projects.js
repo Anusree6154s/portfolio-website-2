@@ -7,7 +7,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 import ProjectModal from './ProjectModal';
 import projectsDB from '../db/projects.json'
-
+import { useMediaQuery } from 'react-responsive';
 
 
 
@@ -25,6 +25,8 @@ export default function Projects() {
         setDetails({})
     }
 
+    const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
+    const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
 
     return (
         <section id='projects' style={{ height: 'fit-content', display: 'flex', justifyContent: 'center', paddingTop: '8%' }}>
@@ -46,7 +48,7 @@ export default function Projects() {
                         pagination={{
                             clickable: true,
                         }}
-                        slidesPerView={3}
+                        slidesPerView={isTablet ? 1 : isLaptop ? 2 : 3}
                         modules={[Navigation, Pagination]} className="mySwiper"
                         style={{ background: 'white', height: '100%', paddingBottom: '60px' }}
                     >
@@ -69,25 +71,6 @@ export default function Projects() {
                                     </div>
                                 </SwiperSlide>
                             ))}
-                        {/* {projectsDB && projectsDB.length !== 0 &&
-                            projectsDB.map((project, index) => (
-                                !project.error &&
-                                <SwiperSlide key={index} className='swiper-slide' onClick={() => handleOpen(project)}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%', boxShadow: '0x 2px 2px 2px #f8f9fa', alignItems: 'center', justifyContent: 'space-between' }}>
-                                        <img src={`${project.imageURL}`} alt="dummy img" style={{ width: "100%", height: '60%', flex: 1.5, background: 'gray' }} />
-
-
-                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', width: '80%', justifyContent: 'space-around', height: '100%', flex: 0.85 }}>
-                                            <span style={{ textAlign: 'center' }}>{project.title}</span>
-                                            <span style={{ fontSize: 'small', display: 'flex', gap: '5px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                                                {project.topics.slice(0, 3).map((topic, index) =>
-                                                    <span key={index} style={{ borderRadius: '10px', background: '#e3e3e3', padding: '2px 10px' }}>{topic}</span>
-                                                )}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            ))} */}
 
                     </Swiper>
                 </div>

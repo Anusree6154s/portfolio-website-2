@@ -3,8 +3,15 @@ import ProjectModal from '../components/ProjectModal'
 import FilterListIcon from '@mui/icons-material/FilterList';
 import SearchIcon from '@mui/icons-material/Search';
 import projectsDB from '../db/projects.json'
+import { useMediaQuery } from 'react-responsive';
+
 
 export default function ProjectsPage() {
+    const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
+    const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
+    const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
+
     const allProjects = [...JSON.parse(sessionStorage.getItem('projects')), ...projectsDB]
     const [projects, setProjects] = useState(allProjects)
 
@@ -105,14 +112,14 @@ export default function ProjectsPage() {
     return (
         <section id='projects-page' style={{ display: "flex", flexDirection: 'column', alignItems: 'center' }}>
 
-            <div id='searchbar' style={{ width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', gap: '20px' }}>
-                <div id='search' style={{ width: '40%', background: '#f0f0f0', padding: '0px 10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div id='searchbar' style={{ width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '20px', gap: '20px', flexDirection: isTablet ? 'column' : 'unset' }}>
+                <div id='search' style={{ width: isTablet ? '100%' : '40%', background: '#f0f0f0', padding: '0px 10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <SearchIcon style={{ color: 'gray', fontSize: 'medium' }} />
                     <input type="text" style={{ width: '100%', padding: '10px 0px', outline: 'none', border: 'none', background: '#f0f0f0' }} placeholder='Search' onChange={(e) => debounce(setSearchInput, 1000)(e.target.value)} />
                 </div>
 
-                <div id='filterbar' style={{ display: 'flex', fontSize: 'small', gap: '20px' }}>
-                    <div id='filter-tools' style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent: 'end', fontSize: 'x-small' }}>
+                <div id='filterbar' style={{ display: 'flex', fontSize: 'small', gap: '20px', flexDirection: isTablet ? 'column' : 'unset' , alignItems:'center'}}>
+                    <div id='filter-tools' style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', justifyContent:isTablet?'center': 'end', fontSize: 'x-small' }}>
                         {tools.length !== 0 && tools.map((tool, index) =>
                             <span key={index} style={{ borderRadius: '10px', background: '#f0f0f0', padding: '2px 5px 2px 10px', display: 'flex', gap: '8px', alignItems: 'center' }}>{tool} <span style={{ fontSize: 'xx-small', background: 'white', borderRadius: '10px', padding: '0px 3px', fontWeight: 'bold', cursor: 'pointer' }} id={tool} onClick={(e) => handleUnsetFilter(e)}>x</span></span>
                         )}
@@ -155,7 +162,7 @@ export default function ProjectsPage() {
 
             </div>
 
-            <div style={{ width: '80%', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px', paddingTop: '40px' }}>
+            <div style={{ width: '80%', display: 'grid', gridTemplateColumns: isMobile ? 'repeat(1, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: '40px', paddingTop: '40px' }}>
                 {projects && projects.length !== 0 &&
                     projects.map((project, index) =>
                         !project.error &&

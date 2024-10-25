@@ -15,6 +15,7 @@ function App() {
       console.log('fetchprojects called')
       fetchProjects(setProjects);
     }
+    // if(!sessionStorage.getItem('theme')) sessionStorage.setItem('theme', true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -70,9 +71,9 @@ function App() {
   return (
     // <ProjectsContext.Provider value={{ projects, setProjects }}>
     <div className="App">
-      <Header />
       <main>
         <Router>
+          <Header />
           <div>
             <Routes>
               <Route path="/" element={<Home />} />

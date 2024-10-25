@@ -1,6 +1,8 @@
 import { Box, Modal } from '@mui/material'
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close';
+import { useMediaQuery } from 'react-responsive';
+
 
 
 const style = {
@@ -20,6 +22,11 @@ const style = {
 
 
 export default function ProjectModal({ open, handleClose, details }) {
+    const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
+    const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+    const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
+    const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
+
     return (
         <>
             {
@@ -30,8 +37,8 @@ export default function ProjectModal({ open, handleClose, details }) {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box sx={style} style={{ display: 'flex', gap: '10px', textAlign: 'center' }}>
-                        <img src={`${details.imageURL}`} alt="" style={{ height: '100%', width: '70%', objectFit: 'fill', background: '#e3e3e3' }} />
+                    <Box sx={style} style={{ display: 'flex', gap: '10px', textAlign: 'center', flexDirection: isTablet ? 'column' : 'unset', position: 'relative', alignItems: isTablet ? 'center' : 'unset' }}>
+                        <img src={`${details.imageURL}`} alt="" style={{ height: '100%', width: isTablet ? '100%' : '70%', objectFit: 'fill', background: '#e3e3e3' }} />
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
@@ -52,7 +59,7 @@ export default function ProjectModal({ open, handleClose, details }) {
                                 </>}
                             </span>
                         </div>
-                        <span style={{ textAlign: 'right', cursor: 'pointer' }} onClick={handleClose}><CloseIcon style={{ background: 'gold', borderRadius: '20px', fontWeight: 'bold', padding: '5px' }} /></span>
+                        <span style={{ textAlign: 'right', cursor: 'pointer', position: isTablet ? 'absolute' : 'unset', top: '10px', right: '10px' }} onClick={handleClose}><CloseIcon style={{ background: 'gold', borderRadius: '20px', fontWeight: 'bold', padding: '5px' }} /></span>
                     </Box>
                 </Modal>
             }

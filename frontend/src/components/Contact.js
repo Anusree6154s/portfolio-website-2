@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import emailjs from '@emailjs/browser';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Contact() {
   const [openSuccess, setOpenSuccess] = useState(false)
   const [openWarning, setOpenWarning] = useState(false)
 
+  const isLaptop = useMediaQuery({ query: '(max-width: 1024px)' });
+  const isTablet = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 425px)' });
+  const isSmall = useMediaQuery({ query: '(max-width: 320px)' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,26 +41,26 @@ export default function Contact() {
 
 
   return (
-    <section id='contact' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', paddingTop:'3%' }}>
+    <section id='contact' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: isTablet ? 'fit-content' : '100vh', paddingTop: isTablet ? '8%' : '3%' }}>
       <div style={{ width: '60%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
         <h1 style={{ marginBottom: '3%', marginTop: '0px', color: 'var(--light-primary)', fontWeight: '900', textTransform: 'uppercase' }}>
           Contact Me
         </h1>
 
-        <div style={{ background: 'var(--light-primary)', height: '70%', borderRadius: '20px', display: 'flex', justifyContent: 'space-around', width: "100%" }}>
+        <div style={{ background: 'var(--light-primary)', height: isLaptop ? '50%' : '70%', borderRadius: '20px', display: 'flex', justifyContent: 'space-around', width: "100%", flexDirection: isTablet ? 'column' : 'unset', padding: isTablet ? '5%' : '0%' }}>
 
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src="/images/contact-img.png" alt="contact-img" style={{ width: '70%', background: 'var(--default-color-1)', borderRadius: '5px' }} />
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: isTablet ? '5%' : 'unset' }}>
+            <img src="/images/contact-img.png" alt="contact-img" style={{ width: isTablet?'40%':'70%', background: 'var(--default-color-1)', borderRadius: '5px' }} />
           </div>
 
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: "100%", }}>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: "100%" }}>
 
             <form onSubmit={handleSubmit} action="submit" style={{ width: '80%', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <input type="text" name='name' placeholder='Name' style={{ width: '80%', padding: '10px 20px' }} />
-              <input type="email" name='email' placeholder='Email' style={{ width: '80%', padding: '10px 20px' }} />
-              <input type="text" name='subject' placeholder='Subject' style={{ width: '80%', padding: '10px 20px' }} />
-              <textarea name='message' placeholder='Message' style={{ width: '80%', padding: '10px 20px', height: '50px' }} />
+              <input type="text" name='name' placeholder='Name' style={{ width: isLaptop ? '100%' : '80%', padding: '10px 20px' }} />
+              <input type="email" name='email' placeholder='Email' style={{ width: isLaptop ? '100%' : '80%', padding: '10px 20px' }} />
+              <input type="text" name='subject' placeholder='Subject' style={{ width: isLaptop ? '100%' : '80%', padding: '10px 20px' }} />
+              <textarea name='message' placeholder='Message' style={{ width: isLaptop ? '100%' : '80%', padding: '10px 20px', height: '50px' }} />
               <button style={{ width: '50%', padding: '10px 20px', alignSelf: 'center', background: 'gold', color: 'var(--special-text)', fontWeight: 'bold', border: 'none', borderRadius: '2px' }}>Send</button>
 
             </form>
@@ -96,6 +101,6 @@ export default function Contact() {
         </Alert>
       </Snackbar>
 
-    </section>
+    </section >
   )
 }
