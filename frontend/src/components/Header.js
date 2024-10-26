@@ -27,7 +27,6 @@ export default function Header() {
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
-    console.log(lightMode)
     return (
         <>
             <header style={{ position: 'sticky', top: '0px', zIndex: 2 }}>

@@ -10,7 +10,9 @@ import { ThemeContext } from './contexts/ThemeContext';
 
 function App() {
   const [projects, setProjects] = useState([])
-  const [lightMode, setLightMode] = useState(true)
+
+  const lightModeDefault = sessionStorage.getItem('theme') ? JSON.parse(sessionStorage.getItem('theme')) : true
+  const [lightMode, setLightMode] = useState(lightModeDefault)
 
   useEffect(() => {
     if (!sessionStorage.getItem('projects')) {
@@ -19,6 +21,12 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('theme', lightMode)
+  }, [lightMode])
+
+
 
   useEffect(() => {
     if (projects.length) {
