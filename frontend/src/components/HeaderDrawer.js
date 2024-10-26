@@ -21,8 +21,8 @@ export default function HeaderDrawer({ open, toggleDrawer }) {
       <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} style={{ backgroundColor: !lightMode && 'var(--light-text)', height: '100%', color: !lightMode && 'white' }}>
         <List>
           {[{ title: 'Home', url: '/#top', icon: <HomeIcon /> }, { title: 'Skills', url: '/#skills', icon: <ConstructionIcon /> }, { title: 'Projects', url: '/#projects', icon: <WebStoriesIcon /> }, { title: 'Contact', url: '/#contact', icon: <MailIcon /> }].map((group, index) => (
-            <a href={group.url}>
-              <ListItem key={index} disablePadding>
+            <a key={index}  href={group.url}>
+              <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{ color: !lightMode && 'gray' }}>
                     {group.icon}
