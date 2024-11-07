@@ -60,7 +60,7 @@ export default function Projects() {
                             {projects && projects.length !== 0 &&
                                 projects.map((project, index) => (
                                     !project.error &&
-                                    <SwiperSlide key={index} className='swiper-slide' onClick={() => handleOpen(project)}>
+                                    <SwiperSlide key={index} className='swiper-slide' onClick={() => handleOpen(project)} >
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', height: '100%', boxShadow: '0x 2px 2px 2px #f8f9fa', alignItems: 'center', justifyContent: 'space-between' }}>
                                             <img src={`${project.imageURL}`} alt="dummy img" style={{ width: "100%", height: '60%', flex: 1.5, background: lightMode ? 'gray' : 'var(--dark-accent)' }} />
 
@@ -112,9 +112,11 @@ export default function Projects() {
           }
 
           .swiper-slide:hover{
-        background: ${lightMode ? '#f5f5f5' : 'var(--light-text)'};
-          opacity:0.8;
-          cursor:pointer;
+            background: ${lightMode ? '#f5f5f5' : 'var(--light-text)'};
+            opacity:0.8;
+            cursor:pointer;
+            border-radius:10px;
+            overflow:hidden;
           }
 
        

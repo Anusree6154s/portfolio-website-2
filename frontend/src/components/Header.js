@@ -38,22 +38,28 @@ export default function Header() {
                                     background: lightMode ? 'linear-gradient(to right,var(--light-primary), var(--light-accent))' : 'linear-gradient(to right,var(--dark-primary), var(--dark-accent))',
                                     padding: '0px 8px 0px 10px', fontWeight: 'bold', cursor: 'pointer',
                                 }}>
-                                    A.
+                                   <a href='/#top'> A.</a>
                                 </Typography>
+                                
                                 <Box style={{ display: isTablet ? 'none' : 'flex', color: lightMode ? 'var(--light-text)' : 'var(--dark-text)', width: '50%', justifyContent: 'space-between', cursor: 'pointer' }} className='nav-buttons'>
                                     <a href='/#top' >Home</a>
                                     <a href='/#skills'>Skills</a>
                                     <a href='/#projects'>Projects</a>
                                     <a href='/#contact'>Contact</a>
                                 </Box>
-                                <a href="https://drive.google.com/file/d/1yCF-00tsgWcXbntJY-yjH896HMvbsFew/view?usp=drive_link" target='_blank' rel="noreferrer" color="inherit" style={{ background: 'gold', color: 'var(--special-text)', padding: '5px 15px', border: 'none', fontWeight: 'bold', borderRadius: '5px' }} className='resume-button'>Resume</a>
-                                <div
-                                    onClick={setTheme}
-                                    style={{ cursor: 'pointer', color: lightMode ? 'var(--light-primary)' : 'var(--dark-primary)' }}>
-                                    {lightMode ? <DarkModeIcon /> : <LightModeIcon />}
+
+                                <a href="https://drive.google.com/file/d/1Y8_r1SKBmwClHUr-pszQpEmI3XLBEbTO/view?usp=sharing" target='_blank' rel="noreferrer" color="inherit" style={{ background: 'gold', color: 'var(--special-text)', padding: '5px 15px', border: 'none', fontWeight: 'bold', borderRadius: '5px', display: isTablet && 'none' }} className='resume-button'>Resume</a>
+
+                                <div style={{display:'flex', }}>
+                                    <div
+                                        onClick={setTheme}
+                                        style={{ cursor: 'pointer', color: lightMode ? 'var(--light-primary)' : 'var(--dark-primary)', marginRight: isTablet && '10px' }}>
+                                        {lightMode ? <DarkModeIcon /> : <LightModeIcon />}
+                                    </div>
+
+                                    <MenuIcon onClick={toggleDrawer(true)} className='drawer-button' style={{ color: lightMode ? 'black' : 'white', display: !isTablet && 'none' }} />
                                 </div>
 
-                                <MenuIcon onClick={toggleDrawer(true)} className='drawer-button' style={{ color:lightMode? 'black':'white', display: !isTablet && 'none' }} />
                             </Box>
                         </Toolbar>
                     </AppBar>

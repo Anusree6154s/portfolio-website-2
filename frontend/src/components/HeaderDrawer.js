@@ -21,7 +21,7 @@ export default function HeaderDrawer({ open, toggleDrawer }) {
       <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} style={{ backgroundColor: !lightMode && 'var(--light-text)', height: '100%', color: !lightMode && 'white' }}>
         <List>
           {[{ title: 'Home', url: '/#top', icon: <HomeIcon /> }, { title: 'Skills', url: '/#skills', icon: <ConstructionIcon /> }, { title: 'Projects', url: '/#projects', icon: <WebStoriesIcon /> }, { title: 'Contact', url: '/#contact', icon: <MailIcon /> }].map((group, index) => (
-            <a key={index}  href={group.url}>
+            <a key={index} href={group.url}>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{ color: !lightMode && 'gray' }}>
@@ -34,16 +34,14 @@ export default function HeaderDrawer({ open, toggleDrawer }) {
           ))}
         </List>
         <Divider />
-        <List>
-          <a href='/projects' >
-            {['Resume'].map((text, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={text} style={{ background: 'gold', color: 'var(--special-text)', padding: '5px 15px', border: 'none', fontWeight: 'bold', borderRadius: '5px', textAlign: 'center' }} />
-                </ListItemButton>
+        <List style={{ marginLeft: '20px', marginRight: '20px' }}>
+          {['Resume'].map((text, index) => (
+            <a href='https://drive.google.com/file/d/1Y8_r1SKBmwClHUr-pszQpEmI3XLBEbTO/view?usp=sharing'>
+              <ListItem key={index} disablePadding >
+                <ListItemText primary={text} style={{ background: 'gold', color: 'var(--special-text)', padding: '5px 15px', border: 'none', fontWeight: 'bold', borderRadius: '5px', textAlign: 'center' }} />
               </ListItem>
-            ))}
-          </a>
+            </a>
+          ))}
         </List>
       </Box>
     </Drawer>
