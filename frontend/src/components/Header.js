@@ -36,7 +36,7 @@ export default function Header() {
                             <Box style={{ width: '80%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                 <Typography variant="h6" component="div" sx={{
                                     background: lightMode ? 'linear-gradient(to right,var(--light-primary), var(--light-accent))' : 'linear-gradient(to right,var(--dark-primary), var(--dark-accent))',
-                                    padding: '0px 8px 0px 10px', fontWeight: 'bold', cursor: 'pointer',
+                                    padding: '0px 8px 0px 10px', fontWeight: 'bold', cursor: 'pointer', borderRadius:'5px'
                                 }}>
                                    <a href='/#top'> A.</a>
                                 </Typography>
