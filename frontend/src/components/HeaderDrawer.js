@@ -36,7 +36,7 @@ export default function HeaderDrawer({ open, toggleDrawer }) {
         <Divider />
         <List style={{ marginLeft: '20px', marginRight: '20px' }}>
           {['Resume'].map((text, index) => (
-            <a href='https://drive.google.com/file/d/1Y8_r1SKBmwClHUr-pszQpEmI3XLBEbTO/view?usp=sharing'>
+            <a href='https://drive.google.com/file/d/1Y8_r1SKBmwClHUr-pszQpEmI3XLBEbTO/view?usp=sharing' key={index}>
               <ListItem key={index} disablePadding >
                 <ListItemText primary={text} style={{ background: 'gold', color: 'var(--special-text)', padding: '5px 15px', border: 'none', fontWeight: 'bold', borderRadius: '5px', textAlign: 'center' }} />
               </ListItem>

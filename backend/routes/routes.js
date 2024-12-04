@@ -1,12 +1,8 @@
-const express = require('express');
-const { fetchRepo } = require('../controllers/user.controller');
-const routes = express.Router()
+const express = require("express");
+const { fetchRepo, fetchPrevData } = require("../controllers/user.controller");
+const routes = express.Router();
 
-routes.get('/fetch-repos', (req, res, next) => {
-    console.log('called'); next()
-}, fetchRepo)
-// .post('/users', createUser)
-// .put('/users/:id', updateUser)
-// .delete('/users/:id', deleteUser);
+routes.get("/fetch-repos", fetchRepo);
+routes.get("/prev-data", fetchPrevData);
 
-module.exports = routes
+module.exports = routes; 

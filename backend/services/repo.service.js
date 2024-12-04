@@ -22,7 +22,7 @@ exports.fetchRepoNames = async () => {
 
     const username = 'Anusree6154s';  // GitHub username
     const repo = 'Anusree6154s';       // Repository name
-    console.log('token:', git_token)
+    // console.log('token:', git_token)
     try {
         // Fetch README content from GitHub API
         const response = await axios.get(`https://api.github.com/repos/${username}/${repo}/readme`, {
@@ -37,8 +37,7 @@ exports.fetchRepoNames = async () => {
         const extractedRepoNames = extractRepoLinks(readmeContent);
         return extractedRepoNames
     } catch (error) {
-        console.error('Error fetching README:', error);
-        // alert('error getting repo names')
+        console.error('Error fetching README:', error.message);
     }
 };
 
