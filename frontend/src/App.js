@@ -21,8 +21,11 @@ function App() {
     if (!sessionStorage.getItem("projects")) {
       fetchProjects(setProjects);
     }
-    
-    fetchPrevProjects(setPrevProjects);
+
+    if (!sessionStorage.getItem("prevProjects")) {
+      fetchPrevProjects(setPrevProjects);
+    }
+   
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
